@@ -23,10 +23,24 @@ namespace GestionBiblioteca.Domain.Entities
             Loans = new List<Loan>();
             LendingDays = p_lendingDays;
         }
-
-        public int QuantityLendingBooks()
+        public int quantityLendingBooks()
         {
-            
+            int i = 0;
+            foreach (var loan in Loans)
+            {
+                i++;
+            }
+            return i;
         }
+        public string toString()
+        {
+            return $"{Dni} // {Name}, // { TypeOfAssociated()}";
+        }
+        public bool canLend(){
+            
+            //falta implementar la logica
+            return false;
+        }
+        public abstract string TypeOfAssociated();
     }
 }
