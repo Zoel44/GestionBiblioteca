@@ -23,7 +23,7 @@ namespace GestionBiblioteca.Domain.Entities
             Loans = new List<Loan>();
             LendingDays = p_lendingDays;
         }
-        public int QuantityLendingBooks()
+        public int quantityLendingBooks()
         {
             int i = 0;
             foreach (var loan in Loans)
@@ -32,16 +32,16 @@ namespace GestionBiblioteca.Domain.Entities
             }
             return i;
         }
-        public string ToStringF()
+        public string toString()
         {
             return $"{Dni} // {Name}, // { TypeOfAssociated()}";
         }
-        public bool CanLend(){
+        public bool canLend(){
             
             //falta implementar la logica
             return false;
         }
-        public abstract string TypeOfAssociated();
+        public abstract string typeOfAssociated();
 
         
     }

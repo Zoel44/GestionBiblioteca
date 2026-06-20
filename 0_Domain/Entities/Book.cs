@@ -6,15 +6,17 @@ namespace GestionBiblioteca.Domain.Entities
         public string Author { get; private set; }
         public string Editorial { get; private set; }
         public int Year { get; private set; }
-        public string Isbn { get; private set; }
+        public int Edition { get; private set; }
+        public List<Loan> Loans { get; private set; }
 
-        public Book(string p_title, string p_author, string p_editorial, int p_year, string p_isbn)
+        public Book(string p_title, string p_author, string p_editorial, int p_year, int p_edition)
         {
             Title = p_title;
             Author = p_author;
             Editorial = p_editorial;
             Year = p_year;
-            Isbn = p_isbn;
+            edition = p_edition;
+            Loans = new List<Loan>();
         }
     }
 }
