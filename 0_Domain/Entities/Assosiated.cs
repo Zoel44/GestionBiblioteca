@@ -5,7 +5,8 @@ namespace GestionBiblioteca.Domain.Entities
         public int Dni { get; private set; }
         public string Name { get; private set; }
         public List<Loan> Loans { get; private set; }
-        public int LendingDays { get; private set; }
+        public int LendingDays { get; protected set; }
+        public int QuantityBooksLending { get; private set; }
 
         public Associated(int p_dni, string p_name, List<Loan> p_aLoan, int p_lendingDays)
         {
@@ -34,13 +35,9 @@ namespace GestionBiblioteca.Domain.Entities
         }
         public string toString()
         {
-            return $"{Dni} // {Name}, // { TypeOfAssociated()}";
+            return $"{Dni} // {Name}, // { typeOfAssociated()}";
         }
-        public bool canLend(){
-            
-            //falta implementar la logica
-            return false;
-        }
-        public abstract string TypeOfAssociated();
+        public abstract bool canLend();
+        public abstract string typeOfAssociated();
     }
 }
