@@ -5,39 +5,69 @@ namespace GestionBiblioteca.Domain.Entities
         public int Dni { get; private set; }
         public string Name { get; private set; }
         public List<Loan> Loans { get; private set; }
-        public int LendingDays { get; protected set; }
         public int QuantityBooksLending { get; private set; }
 
-        public Associated(int p_dni, string p_name, List<Loan> p_aLoan, int p_lendingDays)
+        public Associated()
         {
-            //constructor con historial de prestamos
+            
+        }
+        public Associated(int p_dni, string p_name)
+        {
+            //constructor sin historial de prestamos
+            setDNI (p_dni);
+            setName(p_name);
+            Loans = new List<Loan>();
+            QuantityBooksLending = 0;
+        }
+        public Associated(int p_dni, string p_name,List<Loan> p_aLoan, int p_days)
+        {
+            //constructor con historial de prestamos para crear casos de prueba a mano
             Dni = p_dni;
             Name = p_name;
             Loans = p_aLoan;
-            LendingDays = p_lendingDays;
+            QuantityBooksLending = p_days;
         }
-        public Associated(int p_dni, string p_name, int p_lendingDays)
-        {
-            //constructor sin historial de prestamos
-            Dni = p_dni;
-            Name = p_name;
-            Loans = new List<Loan>();
-            LendingDays = p_lendingDays;
-        }
-        public int quantityLendingBooks()
-        {
-            int i = 0;
-            foreach (var loan in Loans)
-            {
-                i++;
-            }
-            return i;
-        }
-        public string toString()
-        {
-            return $"{Dni} // {Name}, // { typeOfAssociated()}";
-        }
-        public abstract bool canLend();
+   
         public abstract string typeOfAssociated();
+        public bool canLend()
+        {   
+            if(QuantityBooksLending > 3)
+            {//si tiene mas de 2 libros no puede pedir prestado, así que tampoco hace falta ver si tiene prestamos vencidos
+                foreach (Loan aLoan in Loans)
+                {
+                    if (aLoan.expired(aLoan.RetirementDate.AddDays(7)))
+                    {
+                    //preguntamos si el prestamo esta vencido, para eso comparamos la fecha de devolucion con la fecha de retiro mas los dias de prestamo
+                    //si está vencido no puede pedir prestado, can ask lend? false, no
+                    return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        public void setName(string p_name)
+        {
+            if (!string.IsNullOrWhiteSpace(p_name))
+            {
+                Name = p_name;
+            }
+            else
+            {
+                throw new ArgumentException("El nombre no puede estar vacío.");
+            }
+        }
+        public void setDNI(int p_dni)
+        {
+            if(Math.Abs(p_dni).ToString().Length == 8)
+            {
+                Dni = p_dni;
+            }
+            else
+            {
+                throw new ArgumentException("El formato es incorrecto");
+            }
+        }
+
     }
 }

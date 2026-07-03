@@ -3,59 +3,31 @@ namespace GestionBiblioteca.Domain.Entities
     public class Professor : Associated
     {
         public string Subject { get; private set; }
-        public bool Responsability { get; private set; }
 
-        public Professor(int p_dni, string p_name, List<Loan> p_aLoan, string p_subject)
-            : base(p_dni, p_name, p_aLoan, 5)
+        public Professor(int p_dni, string p_name, List<Loan> p_aLoan, string p_subject, int p_days)
+            : base(p_dni, p_name, p_aLoan, p_days)
         {//constructor con historial de prestamos
             Subject = p_subject;
-            Responsability = true;
         }
         public Professor(int p_dni, string p_name, string p_subject)
-            : base(p_dni, p_name, 5)
+            : base(p_dni, p_name)
         {
-            Subject = p_subject;
-            Responsability = true;
+            setSubject(p_subject);
         }
         public override string typeOfAssociated()
         {
             return "Professor";
         }
-        public bool isResponsable()
+        public void setSubject(string p_subject)
         {
-            if (canLend() == true)
+            if (!string.IsNullOrWhiteSpace(p_subject))
             {
-                return true;
+                Subject = p_subject;
             }
-            return Responsability = false;
-
-        }
-        public void changeLendingDays()
-        {
-            if(isResponsable() == true)
+            else
             {
-                LendingDays ++;
+                throw new ArgumentException("Ingresó un valor en blanco, intentelo de nuevo.");
             }
         }
-        public override bool canLend()
-        {
-            if(Responsability == true)// si sabemos que no es responsable no tiene sentido analizar
-            {
-                
-                foreach (Loan aLoan in Loans)
-                    {
-                        if (aLoan.expired(aLoan.RetirementDate.AddDays(LendingDays)))
-                        {
-                            //preguntamos si el prestamo esta vencido, para eso comparamos la fecha de devolucion con la fecha de retiro mas los dias de prestamo
-                            //si está vencido no puede pedir prestado, can ask lend? false, no
-                            return false;
-                        }
-                    }
-                    return true;
-            }
-            return false;
-        }
-        
-
     }
 }
