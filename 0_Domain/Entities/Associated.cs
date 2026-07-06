@@ -61,7 +61,7 @@ namespace GestionBiblioteca.Domain.Entities
         {
             // Validar que sea un número positivo de exactamente 8 dígitos
             // Rango válido: 10,000,000 a 99,999,999
-            if(p_dni >= 10000000 && p_dni <= 99999999)
+            if(p_dni > 0)
             {
                 Dni = p_dni;
             }

@@ -105,7 +105,7 @@ namespace GestionBiblioteca.Domain.Entities
         }
         public void setBookID(int p_id)
         {
-            if (p_id > 0)
+            if (p_id >= 0)
             {
                 BookID = p_id;
             }
