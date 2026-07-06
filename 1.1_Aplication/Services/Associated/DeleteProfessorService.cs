@@ -1,3 +1,4 @@
+using GestionBiblioteca.Domain.Entities;
 using GestionBiblioteca.Domain.Interfaces;
 
 namespace GestionBiblioteca.Aplication.Services
@@ -11,7 +12,7 @@ namespace GestionBiblioteca.Aplication.Services
         }
         public int ejecutar(int p_dni)
         {
-            var associated = repository.searchProfessorForDNI(p_dni);
+            Professor? associated = repository.searchProfessorForDNI(p_dni);
 
             if(associated == null)
             {

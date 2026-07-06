@@ -15,7 +15,7 @@ namespace GestionBiblioteca.Aplication.Services
         }
         public int ejecutar(CreateStudentInput input)
         {
-            var newAssociated = new Student(0, "a", "a"); //se le asignan datos genéricos que serán actualizados a continuación, para evitar usar un constructor sin datos
+            Student newAssociated = new Student(0, "a", "a"); //se le asignan datos genéricos que serán actualizados a continuación, para evitar usar un constructor sin datos
             newAssociated.setName(input.Name);
             newAssociated.setDNI(input.Dni);
             newAssociated.setDegree(input.Degree);
