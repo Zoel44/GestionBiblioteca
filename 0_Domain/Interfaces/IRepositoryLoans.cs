@@ -5,10 +5,10 @@ namespace GestionBiblioteca.Domain.Interfaces
     public interface IRepositoryLoans
     {
         // Método para agregar una cuenta al repositorio
-        void addLoan(Book book);
+        void addLoan(Loan loan);
 
         // Método para obtener una cuenta por su ID
-        Book? searchLoanForID(int id);
+        Loan? searchLoanForID(string id);
 
         // Método para actualizar una cuenta existente
         void updateLoan(Loan loan);

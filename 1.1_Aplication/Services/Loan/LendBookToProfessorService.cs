@@ -29,6 +29,7 @@ namespace GestionBiblioteca.Aplication.Services
 
             string newID = $"{DateTime.Now.ToString("yyyyMMddhhmmss")+p_DNI.ToString()}";
             Loan newLoan = new Loan(DateTime.Now, newID, associated, book);
+            loa_repo.addLoan(newLoan);
             
             return int.Parse(newID); 
             }
