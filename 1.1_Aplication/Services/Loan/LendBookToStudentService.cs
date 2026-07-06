@@ -15,10 +15,11 @@ namespace GestionBiblioteca.Aplication.Services
             boo_repo = p_repo2;
             loa_repo = p_repo3;
         }
-        public int ejecutar(int p_DNI, int p_ID)
+        public int ejecutar(int p_dni, int p_id)
         {
-            Student? associated = asso_repo.searchStudentForDNI(p_DNI);
-            Book? book = boo_repo.searchBookForID(p_ID);
+            //esto es redundante, ya estás pasando el libro y el asociado, no hace falta que se busque otra vez 
+            Student? associated = asso_repo.searchStudentForDNI(p_dni);
+            Book? book = boo_repo.searchBookForID(p_id);
 
             if(associated == null && book == null)
             {
@@ -27,7 +28,7 @@ namespace GestionBiblioteca.Aplication.Services
             else
             {
 
-            string newID = $"{DateTime.Now.ToString("yyyyMMddhhmmss")+p_DNI.ToString()}";
+            string newID = $"{DateTime.Now.ToString("yyyyMMddhhmmss")+p_dni.ToString()}";
             Loan newLoan = new Loan(DateTime.Now, newID, associated, book);
             loa_repo.addLoan(newLoan);
             
