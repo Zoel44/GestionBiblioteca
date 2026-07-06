@@ -42,7 +42,7 @@ namespace GestionBiblioteca.Domain.Entities
         {   
             if(Loans.Count > 0)
             {
-                return Loans[Loans.Count^1];
+                return Loans[Loans.Count - 1];
             }
             
             return null;

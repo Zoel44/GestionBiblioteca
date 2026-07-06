@@ -15,14 +15,21 @@ namespace GestionBiblioteca.Aplication.Services
         }
         public int ejecutar(CreateStudentInput input)
         {
-            Student newAssociated = new Student(0, "a", "a"); //se le asignan datos genéricos que serán actualizados a continuación, para evitar usar un constructor sin datos
-            newAssociated.setName(input.Name);
-            newAssociated.setDNI(input.Dni);
-            newAssociated.setDegree(input.Degree);
+            try
+            {
+                Student newAssociated = new Student(99999999, "a", "a");
+                newAssociated.setName(input.Name);
+                newAssociated.setDNI(input.Dni);
+                newAssociated.setDegree(input.Degree);
 
-            repository.addStudent(newAssociated);
+                repository.addStudent(newAssociated);
 
-            return newAssociated.Dni;
+                return newAssociated.Dni;
+            }
+            catch (ArgumentException ex)
+            {
+                throw new InvalidOperationException($"Error al crear estudiante: {ex.Message}", ex);
+            }
         }
     }
 }

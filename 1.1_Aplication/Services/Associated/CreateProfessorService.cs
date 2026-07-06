@@ -14,14 +14,21 @@ namespace GestionBiblioteca.Aplication.Services
         }
         public int ejecutar(CreateProfessorInput input)
         {
-            Professor newAssociated = new Professor(0, "a", "a"); //se le asignan datos genéricos que serán actualizados a continuación, para evitar usar un constructor sin datos
-            newAssociated.setName(input.Name);
-            newAssociated.setDNI(input.Dni);
-            newAssociated.setSubject(input.Subject);
+            try
+            {
+                Professor newAssociated = new Professor(99999999, "a", "a");
+                newAssociated.setName(input.Name);
+                newAssociated.setDNI(input.Dni);
+                newAssociated.setSubject(input.Subject);
 
-            repository.addProfessor(newAssociated);
+                repository.addProfessor(newAssociated);
 
-            return newAssociated.Dni;
+                return newAssociated.Dni;
+            }
+            catch (ArgumentException ex)
+            {
+                throw new InvalidOperationException($"Error al crear profesor: {ex.Message}", ex);
+            }
         }
     }
 }

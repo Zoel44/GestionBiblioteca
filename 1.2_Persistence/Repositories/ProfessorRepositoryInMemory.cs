@@ -5,7 +5,7 @@ namespace GestionBiblioteca.Persistence.Repositores
 {
     public class ProfessorRepositoryInMemory : IRepositoryProfessors
     {
-        private static readonly List<Associated> ProfessorsList = new List<Associated>();
+        private static readonly List<Professor> ProfessorsList = new List<Professor>();
         public void addProfessor(Professor p_professor)
         {
             ProfessorsList.Add(p_professor);

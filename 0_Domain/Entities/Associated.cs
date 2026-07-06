@@ -59,13 +59,15 @@ namespace GestionBiblioteca.Domain.Entities
         }
         public void setDNI(int p_dni)
         {
-            if(Math.Abs(p_dni).ToString().Length == 8)
+            // Validar que sea un número positivo de exactamente 8 dígitos
+            // Rango válido: 10,000,000 a 99,999,999
+            if(p_dni >= 10000000 && p_dni <= 99999999)
             {
                 Dni = p_dni;
             }
             else
             {
-                throw new ArgumentException("El formato es incorrecto");
+                throw new ArgumentException("El DNI debe ser un número de 8 dígitos (ej: 38456789). Recibido: " + p_dni);
             }
         }
 

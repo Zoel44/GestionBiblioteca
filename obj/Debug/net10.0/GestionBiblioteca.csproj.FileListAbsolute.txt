@@ -35,3 +35,5 @@ C:\Users\zoelg\Documents\Visual\GestionBiblioteca\obj\Debug\net10.0\ref\GestionB
 C:\Users\zoelg\Documents\Visual\GestionBiblioteca\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\zoelg\Documents\Visual\GestionBiblioteca\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\zoelg\Documents\Visual\GestionBiblioteca\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\zoelg\Documents\Visual\GestionBiblioteca\bin\Debug\net10.0\GestionBiblioteca.xml
+C:\Users\zoelg\Documents\Visual\GestionBiblioteca\bin\Debug\net10.0\Swashbuckle.AspNetCore.Annotations.dll

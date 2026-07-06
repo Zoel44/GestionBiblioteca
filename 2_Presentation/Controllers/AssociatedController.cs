@@ -4,52 +4,78 @@ using GestionBiblioteca.Aplication.Services;
 
 namespace GestionBiblioteca.Presentation.Controllers
 {
-    [ApiController] // Indica que es un controlador de API
-    [Route("api/library")] // Define la ruta (ej: api/productos)
+    /// <summary>
+    /// Controlador para gestionar profesores y estudiantes en la biblioteca
+    /// </summary>
+    [ApiController]
+    [Route("api/library")]
     public class AssociatedController : ControllerBase
     {
-
-        [HttpGet]
-        public IActionResult Dummy()
+        /// <summary>
+        /// Busca un profesor por su DNI
+        /// </summary>
+        /// <param name="dni">DNI del profesor a buscar (8 dígitos)</param>
+        /// <returns>Datos del profesor encontrado</returns>
+        [HttpGet("{dni:int}/search-professor")]
+        [Produces("application/json")]
+        public ProfessorDTO? SearchProfessorForDNI(int dni, SearchProfessorService service)
         {
-            return Ok(new { mensaje = "Hola AssociatedController" });
+            return service.ejecutar(dni);
         }
 
-        [HttpGet("{dni:int}/Search Professor")]
-        public ProfessorDTO? SearchProfessorForDNI(int id, SearchProfessorService service)
+        /// <summary>
+        /// Busca un estudiante por su DNI
+        /// </summary>
+        /// <param name="dni">DNI del estudiante a buscar (8 dígitos)</param>
+        /// <returns>Datos del estudiante encontrado</returns>
+        [HttpGet("{dni:int}/search-student")]
+        [Produces("application/json")]
+        public StudentDTO? SearchStudentForDNI(int dni, SearchStudentService service)
         {
-            return service.ejecutar(id);
-        }
-        [HttpGet("{dni:int}/Search Student")]
-        public StudentDTO? SearchStudentForDNI(int id, SearchStudentService service)
-        {
-            return service.ejecutar(id);
+            return service.ejecutar(dni);
         }
 
-        [HttpPost]
-        public int CreateProfessor([FromBody] CreateProfessorInput input, CreateProfessorService crearCuentaService)
+        /// <summary>
+        /// Crea un nuevo profesor en el sistema
+        /// </summary>
+        /// <param name="input">Datos del profesor a crear (DNI, nombre y materia)</param>
+        /// <returns>DNI del profesor creado</returns>
+        [HttpPost("create-professor")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public int CreateProfessor([FromBody] CreateProfessorInput input, [FromServices] CreateProfessorService crearCuentaService)
         {
-            // Aquí puedes llamar a tu servicio de aplicación para crear una cuenta
-            // Por ejemplo: _crearCuentaService.Ejecutar(input);
             return crearCuentaService.ejecutar(input);
-            // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
-            //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
         }
-        [HttpPost]
-        public int CreateStudent([FromBody] CreateStudentInput input, CreateStudentService crearCuentaService)
+
+        /// <summary>
+        /// Crea un nuevo estudiante en el sistema
+        /// </summary>
+        /// <param name="input">Datos del estudiante a crear (DNI, nombre y carrera)</param>
+        /// <returns>DNI del estudiante creado</returns>
+        [HttpPost("create-student")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public int CreateStudent([FromBody] CreateStudentInput input, [FromServices] CreateStudentService crearCuentaService)
         {
-            // Aquí puedes llamar a tu servicio de aplicación para crear una cuenta
-            // Por ejemplo: _crearCuentaService.Ejecutar(input);
             return crearCuentaService.ejecutar(input);
-            // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
-            //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
         }
-        [HttpDelete("{id:int}/Delete Professor")]
+
+        /// <summary>
+        /// Elimina un profesor del sistema
+        /// </summary>
+        /// <param name="id">DNI del profesor a eliminar</param>
+        [HttpDelete("{id:int}/delete-professor")]
         public void DeleteProfessor(int id, DeleteProfessorService servicio)
         {
             servicio.ejecutar(id);
         }
-        [HttpDelete("{id:int}/Delete Student")]
+
+        /// <summary>
+        /// Elimina un estudiante del sistema
+        /// </summary>
+        /// <param name="id">DNI del estudiante a eliminar</param>
+        [HttpDelete("{id:int}/delete-student")]
         public void DeleteStudent(int id, DeleteStudentService servicio)
         {
             servicio.ejecutar(id);

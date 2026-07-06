@@ -5,14 +5,14 @@ namespace GestionBiblioteca.Persistence.Repositores
 {
     public class StudentRepositoryInMemory : IRepositoryStudents
     {
-        private static readonly List<Associated> StudentsList = new List<Associated>();
+        private static readonly List<Student> StudentsList = new List<Student>();
         public void addStudent(Student p_student)
         {
             StudentsList.Add(p_student);
         } 
         public Student? searchStudentForDNI(int p_dni)
         {
-            foreach(Student? student in StudentsList)
+            foreach(Student student in StudentsList)
             {
                 if(student.Dni == p_dni)
                 {

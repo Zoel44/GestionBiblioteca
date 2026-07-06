@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GestionBiblioteca</name>
+    </assembly>
+    <members>
+        <member name="T:GestionBiblioteca.Presentation.Controllers.AssociatedController">
+            <summary>
+            Controlador para gestionar profesores y estudiantes en la biblioteca
+            </summary>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.SearchProfessorForDNI(System.Int32,GestionBiblioteca.Aplication.Services.SearchProfessorService)">
+            <summary>
+            Busca un profesor por su DNI
+            </summary>
+            <param name="dni">DNI del profesor a buscar (8 dígitos)</param>
+            <returns>Datos del profesor encontrado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.SearchStudentForDNI(System.Int32,GestionBiblioteca.Aplication.Services.SearchStudentService)">
+            <summary>
+            Busca un estudiante por su DNI
+            </summary>
+            <param name="dni">DNI del estudiante a buscar (8 dígitos)</param>
+            <returns>Datos del estudiante encontrado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.CreateProfessor(GestionBiblioteca.Aplication.DTO.CreateProfessorInput,GestionBiblioteca.Aplication.Services.CreateProfessorService)">
+            <summary>
+            Crea un nuevo profesor en el sistema
+            </summary>
+            <param name="input">Datos del profesor a crear (DNI, nombre y materia)</param>
+            <returns>DNI del profesor creado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.CreateStudent(GestionBiblioteca.Aplication.DTO.CreateStudentInput,GestionBiblioteca.Aplication.Services.CreateStudentService)">
+            <summary>
+            Crea un nuevo estudiante en el sistema
+            </summary>
+            <param name="input">Datos del estudiante a crear (DNI, nombre y carrera)</param>
+            <returns>DNI del estudiante creado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.DeleteProfessor(System.Int32,GestionBiblioteca.Aplication.Services.DeleteProfessorService)">
+            <summary>
+            Elimina un profesor del sistema
+            </summary>
+            <param name="id">DNI del profesor a eliminar</param>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.DeleteStudent(System.Int32,GestionBiblioteca.Aplication.Services.DeleteStudentService)">
+            <summary>
+            Elimina un estudiante del sistema
+            </summary>
+            <param name="id">DNI del estudiante a eliminar</param>
+        </member>
+        <member name="T:GestionBiblioteca.Presentation.Controllers.LibraryController">
+            <summary>
+            Controlador para gestionar libros en la biblioteca
+            </summary>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.ObtenerPorId(System.Int32,GestionBiblioteca.Aplication.Services.SearchBookService)">
+            <summary>
+            Busca un libro por su ID
+            </summary>
+            <param name="id">ID del libro a buscar</param>
+            <returns>Datos del libro encontrado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.CrearCuenta(GestionBiblioteca.Aplication.DTO.CreateBookInput,GestionBiblioteca.Aplication.Services.CreateBookService)">
+            <summary>
+            Crea un nuevo libro en el sistema
+            </summary>
+            <param name="input">Datos del libro a crear (título, autor, editorial, año, edición)</param>
+            <returns>Mensaje de confirmación</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.Delete(System.Int32,GestionBiblioteca.Aplication.Services.DeleteBookService)">
+            <summary>
+            Elimina un libro del sistema
+            </summary>
+            <param name="id">ID del libro a eliminar</param>
+        </member>
+        <member name="T:GestionBiblioteca.Presentation.Controllers.LoanController">
+            <summary>
+            Controlador para gestionar préstamos de libros en la biblioteca
+            </summary>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LoanController.ObtainForId(System.String,GestionBiblioteca.Aplication.Services.SearchLoanService)">
+            <summary>
+            Busca un préstamo por su ID
+            </summary>
+            <param name="p_id">ID del préstamo a buscar</param>
+            <returns>Datos del préstamo encontrado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LoanController.LendBookToProfessor(GestionBiblioteca.Aplication.DTO.CreateLoanInput,GestionBiblioteca.Aplication.Services.LendBookToProfessorService)">
+            <summary>
+            Realiza un préstamo de libro a un profesor
+            </summary>
+            <param name="input">DNI del profesor y ID del libro a prestar</param>
+            <returns>ID del préstamo creado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LoanController.LendBookToStudent(GestionBiblioteca.Aplication.DTO.CreateLoanInput,GestionBiblioteca.Aplication.Services.LendBookToStudentService)">
+            <summary>
+            Realiza un préstamo de libro a un estudiante
+            </summary>
+            <param name="input">DNI del estudiante y ID del libro a prestar</param>
+            <returns>ID del préstamo creado</returns>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LoanController.Patch(System.String,GestionBiblioteca.Aplication.Services.ReturnBookService)">
+            <summary>
+            Registra la devolución de un libro
+            </summary>
+            <param name="id">ID del préstamo a devolver</param>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>

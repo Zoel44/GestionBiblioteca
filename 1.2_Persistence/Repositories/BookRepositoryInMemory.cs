@@ -3,7 +3,7 @@ using GestionBiblioteca.Domain.Entities;
 
 namespace GestionBiblioteca.Persistence.Repositores
 {
-    public class BookRepositoryInMemowy : IRepositoryBooks
+    public class BookRepositoryInMemory : IRepositoryBooks
     {
         private static readonly List<Book> BookList = new List<Book>();
         public void addBook(Book p_book)

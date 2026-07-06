@@ -6,43 +6,56 @@ using GestionBiblioteca.Aplication.Services;
 
 namespace GestionBiblioteca.Presentation.Controllers
 {
-    [ApiController] // Indica que es un controlador de API
-    [Route("api/loan")] // Define la ruta (ej: api/productos)
+    /// <summary>
+    /// Controlador para gestionar préstamos de libros en la biblioteca
+    /// </summary>
+    [ApiController]
+    [Route("api/loan")]
     public class LoanController : ControllerBase
     {
-
-        [HttpGet]
-        public IActionResult Dummy()
-        {
-            return Ok(new { mensaje = "Hola desde LoanController!!" });
-        }
-
-        [HttpGet("{id:string}")]
+        /// <summary>
+        /// Busca un préstamo por su ID
+        /// </summary>
+        /// <param name="p_id">ID del préstamo a buscar</param>
+        /// <returns>Datos del préstamo encontrado</returns>
+        [HttpGet("{id}")]
+        [Produces("application/json")]
         public LoanDTO? ObtainForId(string p_id, SearchLoanService service)
         {
             return service.ejecutar(p_id);
         }
 
-        [HttpPost]
-        public int LendBookToProfessor([FromBody] int p_dni, int p_id, LendBookToProfessorService lendBookService)
+        /// <summary>
+        /// Realiza un préstamo de libro a un profesor
+        /// </summary>
+        /// <param name="input">DNI del profesor y ID del libro a prestar</param>
+        /// <returns>ID del préstamo creado</returns>
+        [HttpPost("lend-professor")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public int LendBookToProfessor([FromBody] CreateLoanInput input, [FromServices] LendBookToProfessorService lendBookService)
         {
-            // Aquí puedes llamar a tu servicio de aplicación para crear una cuenta
-            // Por ejemplo: _crearCuentaService.Ejecutar(input);
-            return lendBookService.ejecutar(p_dni, p_id);
-            // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
-            //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
-        }
-        [HttpPost]
-        public int LendBookToStudent([FromBody] int p_dni, int p_id, LendBookToStudentService lendBookService)
-        {
-            // Aquí puedes llamar a tu servicio de aplicación para crear una cuenta
-            // Por ejemplo: _crearCuentaService.Ejecutar(input);
-            return lendBookService.ejecutar(p_dni, p_id);
-            // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
-            //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
+            return lendBookService.ejecutar(input.Dni, input.BookId);
         }
 
-        [HttpPatch("{id:string}/devolver")]
+        /// <summary>
+        /// Realiza un préstamo de libro a un estudiante
+        /// </summary>
+        /// <param name="input">DNI del estudiante y ID del libro a prestar</param>
+        /// <returns>ID del préstamo creado</returns>
+        [HttpPost("lend-student")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public int LendBookToStudent([FromBody] CreateLoanInput input, [FromServices] LendBookToStudentService lendBookService)
+        {
+            return lendBookService.ejecutar(input.Dni, input.BookId);
+        }
+
+        /// <summary>
+        /// Registra la devolución de un libro
+        /// </summary>
+        /// <param name="id">ID del préstamo a devolver</param>
+        [HttpPatch("{id}/devolver")]
         public void Patch(string id, ReturnBookService returnBookService)
         {
             returnBookService.ejecutar(id);

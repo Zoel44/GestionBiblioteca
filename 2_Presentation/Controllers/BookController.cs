@@ -5,40 +5,47 @@ using GestionBiblioteca.Domain.Entities;
 
 namespace GestionBiblioteca.Presentation.Controllers
 {
-    [ApiController] // Indica que es un controlador de API
-    [Route("api/book")] // Define la ruta (ej: api/productos)
+    /// <summary>
+    /// Controlador para gestionar libros en la biblioteca
+    /// </summary>
+    [ApiController]
+    [Route("api/book")]
     public class LibraryController : ControllerBase
     {
-
-        [HttpGet]
-        public IActionResult Dummy()
-        {
-            return Ok(new { mensaje = "Hola BookController!!" });
-        }
-
-        [HttpGet("{id:int}/Get")]
+        /// <summary>
+        /// Busca un libro por su ID
+        /// </summary>
+        /// <param name="id">ID del libro a buscar</param>
+        /// <returns>Datos del libro encontrado</returns>
+        [HttpGet("{id:int}")]
+        [Produces("application/json")]
         public BookDTO? ObtenerPorId(int id, SearchBookService service)
         {
             return service.ejecutar(id);
-
         }
 
-        [HttpPost]
-        public string CrearCuenta([FromBody] CreateBookInput input, CreateBookService createService)
+        /// <summary>
+        /// Crea un nuevo libro en el sistema
+        /// </summary>
+        /// <param name="input">Datos del libro a crear (título, autor, editorial, año, edición)</param>
+        /// <returns>Mensaje de confirmación</returns>
+        [HttpPost("create")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public string CrearCuenta([FromBody] CreateBookInput input, [FromServices] CreateBookService createService)
         {
-            // Aquí puedes llamar a tu servicio de aplicación para crear una cuenta
-            // Por ejemplo: _crearCuentaService.Ejecutar(input);
             createService.ejecutar(input);
             return "el libro se agregó correctamente";
-            // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
-            //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
         }
 
-        [HttpDelete("{id:int}/Delete")]
+        /// <summary>
+        /// Elimina un libro del sistema
+        /// </summary>
+        /// <param name="id">ID del libro a eliminar</param>
+        [HttpDelete("{id:int}")]
         public void Delete(int id, DeleteBookService servicio)
         {
             servicio.ejecutar(id);
-                     
         }
     }
 }
