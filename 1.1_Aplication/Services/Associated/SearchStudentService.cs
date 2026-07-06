@@ -6,8 +6,8 @@ namespace GestionBiblioteca.Aplication.Services
 {
     public class SearchStudentService
     {
-         IRepositoryAssociateds repository;
-         public SearchStudentService(IRepositoryAssociateds p_repo)
+         IRepositoryStudents repository;
+         public SearchStudentService(IRepositoryStudents p_repo)
         {
             repository = p_repo;
         }

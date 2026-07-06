@@ -6,9 +6,9 @@ namespace GestionBiblioteca.Aplication.Services
 {
     public class CreateProfessorService
     {
-        IRepositoryAssociateds repository;
+        IRepositoryProfessors repository;
 
-        public CreateProfessorService(IRepositoryAssociateds p_repository)
+        public CreateProfessorService(IRepositoryProfessors p_repository)
         {
             repository = p_repository;
         }
@@ -19,7 +19,7 @@ namespace GestionBiblioteca.Aplication.Services
             newAssociated.setDNI(input.Dni);
             newAssociated.setSubject(input.Subject);
 
-            repository.addAssociated(newAssociated);
+            repository.addProfessor(newAssociated);
 
             return newAssociated.Dni;
         }

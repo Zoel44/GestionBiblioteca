@@ -2,19 +2,18 @@ using GestionBiblioteca.Domain.Entities;
 
 namespace GestionBiblioteca.Domain.Interfaces
 {
-    public interface IRepositoryAssociateds
+    public interface IRepositoryProfessors
     {
         // Método para agregar una cuenta al repositorio
-        void addAssociated(Associated associated);
+        void addProfessor( Professor  professor);
 
         // Método para obtener una cuenta por su ID
         Professor? searchProfessorForDNI(int dni);
-        Student? searchStudentForDNI (int dni);
 
         // Método para actualizar una cuenta existente
-        void updateAssociated(Associated associated);
+        void updateProfessor( Professor  Professor);
 
         // Método para eliminar una cuenta por su ID
-        void deleteAssociated(int dni);
+        void deleteProfessor(int dni);
     }
 }

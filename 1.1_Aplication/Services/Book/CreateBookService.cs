@@ -22,6 +22,7 @@ namespace GestionBiblioteca.Aplication.Services
             newBook.setEditorial(input.Editorial);
             newBook.setBookID(ID);
 
+            repository.addBook(newBook);
             ID ++;
         }
     }

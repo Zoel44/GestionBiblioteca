@@ -6,9 +6,9 @@ namespace GestionBiblioteca.Aplication.Services
 {
     public class CreateStudentService
     {
-        IRepositoryAssociateds repository;
+        IRepositoryStudents repository;
 
-        public CreateStudentService(IRepositoryAssociateds p_repository)
+        public CreateStudentService(IRepositoryStudents p_repository)
         {
             //el constructor se usa para cargar el repositorio 
             repository = p_repository;
@@ -20,7 +20,7 @@ namespace GestionBiblioteca.Aplication.Services
             newAssociated.setDNI(input.Dni);
             newAssociated.setDegree(input.Degree);
 
-            repository.addAssociated(newAssociated);
+            repository.addStudent(newAssociated);
 
             return newAssociated.Dni;
         }

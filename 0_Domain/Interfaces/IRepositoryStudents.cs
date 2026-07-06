@@ -2,19 +2,18 @@ using GestionBiblioteca.Domain.Entities;
 
 namespace GestionBiblioteca.Domain.Interfaces
 {
-    public interface IRepositoryLoans
+    public interface IRepositoryStudents
     {
         // Método para agregar una cuenta al repositorio
-        void addLoan(Book book);
+        void addStudent(Associated associated);
 
         // Método para obtener una cuenta por su ID
-        Book? searchLoanForID(int id);
+        Student? searchStudentForDNI (int dni);
 
         // Método para actualizar una cuenta existente
-        void updateLoan(Loan loan);
+        void updateStudent(Associated Student);
 
         // Método para eliminar una cuenta por su ID
-        void deleteLoan(string id);
-        void returnLoan(string id);
+        void deleteStudent(int dni);
     }
 }

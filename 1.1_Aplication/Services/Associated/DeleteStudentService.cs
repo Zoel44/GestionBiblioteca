@@ -5,8 +5,8 @@ namespace GestionBiblioteca.Aplication.Services
 {
     public class DeleteStudentService
     {
-        IRepositoryAssociateds repository;
-        public DeleteStudentService(IRepositoryAssociateds p_repostory)
+        IRepositoryStudents repository;
+        public DeleteStudentService(IRepositoryStudents p_repostory)
         {
             repository = p_repostory;
         }
@@ -20,7 +20,7 @@ namespace GestionBiblioteca.Aplication.Services
             }
             else
             {
-                repository.deleteAssociated(p_dni);
+                repository.deleteStudent(p_dni);
                 return p_dni;
             }
         }
