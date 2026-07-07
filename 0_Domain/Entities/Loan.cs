@@ -4,31 +4,33 @@ namespace GestionBiblioteca.Domain.Entities
     {
         public string Id { get; private set; }
         public DateTime RetirementDate { get; private set; }
-        public DateTime ReturnDate { get; private set; }
+        public DateTime? ReturnDate { get; private set; }
         public Book ABook { get; private set; }
         public Associated AnAssociated { get; private set; }
         
 
-        public Loan (DateTime p_retirementDate, string p_id, Associated p_associated, Book p_book)
+        public Loan (Associated p_associated, Book p_book)
         {
-            RetirementDate = p_retirementDate;
-            Id = p_id;
+            RetirementDate = DateTime.Now;
+            Id = setID(p_associated);
+            setBook(p_book);
+            setAssociated(p_associated);
+        }
+        public string setID (Associated p_associated)
+        {
+            return p_associated.ToString() + RetirementDate.ToString();
+        }
+        public void setBook(Book p_book)
+        {
             ABook = p_book;
+        }
+        public void setAssociated(Associated p_associated)
+        {
             AnAssociated = p_associated;
         }
-
-       public void registerDateOfReturn(DateTime p_returnDate)
+       public void registerDateOfReturn()
         {
-            ReturnDate = p_returnDate;
-        }
-        public bool expired(DateTime correctDevolutionDay)
-        {//pregunta si está expirado
-            if(ReturnDate > correctDevolutionDay)
-            {
-                //preguntamos si el prestamo esta vencido, para eso comparamos la fecha de devolucion con la fecha de retiro mas los dias de prestamo
-                return true;
-            }
-            return false;
+            ReturnDate = DateTime.Now;
         }
         public string toString()
         {
