@@ -27,7 +27,14 @@ namespace GestionBiblioteca.Persistence.Repositores
         }
         public void deleteStudent(int p_dni)
         {
-            
+            for (int i = 0; i < StudentsList.Count; i++)
+            {
+                if(StudentsList[i].Dni == p_dni)
+                {
+                    StudentsList.RemoveAt(i);
+                    break;
+                }
+            }
         }
 
     }

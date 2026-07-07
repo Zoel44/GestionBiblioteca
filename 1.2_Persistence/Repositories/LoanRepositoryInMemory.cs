@@ -26,7 +26,7 @@ namespace GestionBiblioteca.Persistence.Repositores
             Loan? loan = searchLoanForID(p_id);
             if(loan != null)
             {
-                loan.registerDateOfReturn(DateTime.Now);
+                loan.registerDateOfReturn();
             }
         }
         public void updateLoan(Loan loan)
@@ -34,10 +34,18 @@ namespace GestionBiblioteca.Persistence.Repositores
             
         }
 
-        public void deleteLoan(string id)
+        public void deleteLoan(string p_id)
         {
-            
-        }
+            for (int i = 0; i < LoanList.Count; i++)
+            {
+                if(LoanList[i].Id == p_id)
+                {
+                    LoanList.RemoveAt(i);
+                    break;
+                }
+            }
+
+        } 
     }
 }
 

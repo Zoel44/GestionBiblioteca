@@ -15,6 +15,7 @@ namespace GestionBiblioteca.Domain.Entities
             Id = setID(p_associated);
             setBook(p_book);
             setAssociated(p_associated);
+            ReturnDate = null;
         }
         public string setID (Associated p_associated)
         {

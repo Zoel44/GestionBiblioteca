@@ -13,7 +13,7 @@ namespace GestionBiblioteca.Aplication.Services
             //el constructor se usa para cargar el repositorio 
             repository = p_repository;
         }
-        public int ejecutar(CreateStudentInput input)
+        public string ejecutar(CreateStudentInput input)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace GestionBiblioteca.Aplication.Services
 
                 repository.addStudent(newAssociated);
 
-                return newAssociated.Dni;
+                return "Se ha agregado a: " + newAssociated.Dni.ToString();
             }
             catch (ArgumentException ex)
             {

@@ -12,7 +12,7 @@ namespace GestionBiblioteca.Aplication.Services
         {
             repository = p_repository;
         }
-        public int ejecutar(CreateProfessorInput input)
+        public string ejecutar(CreateProfessorInput input)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace GestionBiblioteca.Aplication.Services
 
                 repository.addProfessor(newAssociated);
 
-                return newAssociated.Dni;
+                return "Se ha agregado a: " + newAssociated.Dni.ToString();
             }
             catch (ArgumentException ex)
             {
