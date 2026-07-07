@@ -23,17 +23,15 @@ namespace GestionBiblioteca.Persistence.Repositores
         }
         public void returnLoan(string p_id)
         {
-            Loan? loan = searchLoanForID(p_id);
-            if(loan != null)
+             for (int i = 0; i < LoanList.Count; i++)
             {
-                loan.registerDateOfReturn();
+                if(LoanList[i].Id == p_id)
+                {
+                    LoanList[i].registerDateOfReturn();
+                    break;
+                }
             }
         }
-        public void updateLoan(Loan loan)
-        {
-            
-        }
-
         public void deleteLoan(string p_id)
         {
             for (int i = 0; i < LoanList.Count; i++)

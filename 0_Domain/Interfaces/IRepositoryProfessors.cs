@@ -1,3 +1,4 @@
+using GestionBiblioteca.Aplication.DTO;
 using GestionBiblioteca.Domain.Entities;
 
 namespace GestionBiblioteca.Domain.Interfaces
@@ -8,7 +9,7 @@ namespace GestionBiblioteca.Domain.Interfaces
 
         Professor? searchProfessorForDNI(int dni);
 
-        void updateProfessor( Professor  Professor);
+        void updateProfessor( ProfessorDTO  Professor, int dni);
 
         void deleteProfessor(int dni);
     }

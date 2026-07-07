@@ -1,3 +1,4 @@
+using GestionBiblioteca.Aplication.DTO;
 using GestionBiblioteca.Domain.Entities;
 
 namespace GestionBiblioteca.Domain.Interfaces
@@ -7,7 +8,7 @@ namespace GestionBiblioteca.Domain.Interfaces
         void addBook(Book book);
 
         Book? searchBookForID(int id);
-        void updateBook(Book book);
+        void updateBook(BookDTO book, int id);
 
         void deleteBook(int id);
     }

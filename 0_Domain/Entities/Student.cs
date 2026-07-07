@@ -23,39 +23,15 @@ namespace GestionBiblioteca.Domain.Entities
             QuantityBooksLending = 0;
         }
 
-        public Student(int p_dni, string p_name, List<Loan> p_aLoan, string p_degree, int p_days)
+        public Student(int p_dni, string p_name, List<Loan> p_aLoan, string p_degree)
         {
             // Constructor con historial de préstamos para crear casos de prueba a mano
             Dni = p_dni;
             Name = p_name;
             Loans = p_aLoan;
-            QuantityBooksLending = p_days;
+            QuantityBooksLending = 0;
             Degree = p_degree;
         }
-
-        public string typeOfAssociated()
-        {
-            return "Student";
-        }
-
-        public bool canLend()
-        {   
-            if(QuantityBooksLending > 3)
-            {
-                // Si tiene más de 3 libros no puede pedir prestado
-                foreach (Loan aLoan in Loans)
-                {
-                    if (aLoan.expired(aLoan.RetirementDate.AddDays(7)))
-                    {
-                        // Preguntamos si el préstamo está vencido
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
         public void setName(string p_name)
         {
             if (!string.IsNullOrWhiteSpace(p_name))

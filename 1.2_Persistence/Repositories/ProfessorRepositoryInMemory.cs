@@ -1,5 +1,6 @@
 using GestionBiblioteca.Domain.Interfaces;
 using GestionBiblioteca.Domain.Entities;
+using GestionBiblioteca.Aplication.DTO;
 
 namespace GestionBiblioteca.Persistence.Repositores
 {
@@ -21,14 +22,44 @@ namespace GestionBiblioteca.Persistence.Repositores
             }
             return null;
         }
-        public void updateProfessor( Professor p_professor)
+        public void updateProfessor( ProfessorDTO p_professor, int p_dni)
         {
+            for (int i = 0; i < ProfessorsList.Count; i++)
+            {
+                if(ProfessorsList[i].Dni == p_dni)
+                {   
+                    if(p_professor.Dni != null)
+                    {
+                        ProfessorsList[i].setDNI(p_professor.Dni.Value);
+                    }
+                    if(p_professor.Name != null)
+                    {
+                        ProfessorsList[i].setName(p_professor.Name);
+                    }
+                    if(p_professor.Subject != null)
+                    {
+                        ProfessorsList[i].setSubject(p_professor.Subject);
+                        break;
+                    }
+                    
+                }
+                
+            }
             
         }
         public void deleteProfessor(int p_dni)
         {
-            
-        }
 
+            for (int i = 0; i < ProfessorsList.Count; i++)
+            {
+                if(ProfessorsList[i].Dni == p_dni)
+                {
+                    ProfessorsList.RemoveAt(i);
+                    break;
+                }
+            }
+
+        }
     }
+
 }

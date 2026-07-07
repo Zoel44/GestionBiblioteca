@@ -15,7 +15,7 @@ namespace GestionBiblioteca.Aplication.DTO
         public string? Editorial { get; set; }
 
         [Description("Año de publicación")]
-        public int? Year { get; set; }
+        public int ? Year { get; set; }
 
         [Description("Número de edición")]
         public int? Edition { get; set; }

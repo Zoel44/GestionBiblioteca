@@ -33,29 +33,6 @@ namespace GestionBiblioteca.Domain.Entities
             Subject = p_subject;
         }
 
-        public string typeOfAssociated()
-        {
-            return "Professor";
-        }
-
-        public bool canLend()
-        {   
-            if(QuantityBooksLending > 3)
-            {
-                // Si tiene más de 3 libros no puede pedir prestado
-                foreach (Loan aLoan in Loans)
-                {
-                    if (aLoan.expired(aLoan.RetirementDate.AddDays(7)))
-                    {
-                        // Preguntamos si el préstamo está vencido
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
         public void setName(string p_name)
         {
             if (!string.IsNullOrWhiteSpace(p_name))

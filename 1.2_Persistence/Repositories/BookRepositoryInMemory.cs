@@ -1,5 +1,6 @@
 using GestionBiblioteca.Domain.Interfaces;
 using GestionBiblioteca.Domain.Entities;
+using GestionBiblioteca.Aplication.DTO;
 
 namespace GestionBiblioteca.Persistence.Repositores
 {
@@ -21,14 +22,49 @@ namespace GestionBiblioteca.Persistence.Repositores
             }
             return null;
         }
-        public void updateBook(Book book)
+        public void updateBook(BookDTO p_book, int p_id)
         {
+            for (int i = 0; i < BookList.Count; i++)
+            {
+                if(BookList[i].BookID == p_id)
+                {   
+                    if(p_book.Author != null)
+                    {
+                        BookList[i].setAuthor(p_book.Author);
+                    }
+                    if(p_book.Title != null)
+                    {
+                        BookList[i].setTitle(p_book.Title);
+                    }
+                    if(p_book.Editorial != null)
+                    {
+                        BookList[i].setEditorial(p_book.Editorial);
+                    }
+                    if(p_book.Year != null)
+                    {
+                        BookList[i].setYear(p_book.Year.Value);
+                    }
+                    if(p_book.Year != null)
+                    {
+                        BookList[i].setYear(p_book.Year.Value);
+                        break;
+                    }
+                }
+                
+            }
             
         }
 
-        public void deleteBook(int id)
+        public void deleteBook(int p_id)
         {
-            
+            for (int i = 0; i < BookList.Count; i++)
+            {
+                if(BookList[i].BookID == p_id)
+                {
+                    BookList.RemoveAt(i);
+                    break;
+                }
+            }
         }
     }
 }
