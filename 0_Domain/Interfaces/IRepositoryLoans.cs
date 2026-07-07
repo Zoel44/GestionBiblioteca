@@ -10,9 +10,6 @@ namespace GestionBiblioteca.Domain.Interfaces
         // Método para obtener una cuenta por su ID
         Loan? searchLoanForID(string id);
 
-        // Método para actualizar una cuenta existente
-        void updateLoan(Loan loan);
-
         // Método para eliminar una cuenta por su ID
         void deleteLoan(string id);
         void returnLoan(string id);

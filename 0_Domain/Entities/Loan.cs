@@ -8,14 +8,15 @@ namespace GestionBiblioteca.Domain.Entities
         public Book ABook { get; private set; }
         public Associated AnAssociated { get; private set; }
         
+
         public Loan (DateTime p_retirementDate, string p_id, Associated p_associated, Book p_book)
         {
             RetirementDate = p_retirementDate;
             Id = p_id;
             ABook = p_book;
             AnAssociated = p_associated;
-
         }
+
        public void registerDateOfReturn(DateTime p_returnDate)
         {
             ReturnDate = p_returnDate;
@@ -31,9 +32,15 @@ namespace GestionBiblioteca.Domain.Entities
         }
         public string toString()
         {
+            string associatedName = "";
+            if (AnAssociated is Professor professor)
+                associatedName = professor.Name;
+            else if (AnAssociated is Student student)
+                associatedName = student.Name;
+
             return "Retiro: " + RetirementDate.ToString() + "- Devolucion: " + ReturnDate.ToString() + "\n"
             +"Libro: " + ABook.Title + "\n"
-            +"Scoio: " + AnAssociated.Name;
+            +"Socio: " + associatedName;
         }
         
 

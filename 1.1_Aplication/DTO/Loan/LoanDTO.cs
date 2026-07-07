@@ -18,6 +18,6 @@ namespace GestionBiblioteca.Aplication.DTO
         public Book ABook { get; set; }
 
         [Description("Información del profesor o estudiante que tiene el préstamo")]
-        public Associated AnAssociated { get; set; }
+        public object AnAssociated { get; set; }
     }
 }
