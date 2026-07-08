@@ -49,30 +49,51 @@
             </summary>
             <param name="id">DNI del estudiante a eliminar</param>
         </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.UpdateProfessor(System.Int32,GestionBiblioteca.Aplication.DTO.UpdateProfessorInput,GestionBiblioteca.Aplication.Services.UpdateProfessorService)">
+            <summary>
+            Actualiza los datos de un profesor
+            </summary>
+            <param name="dni">DNI del profesor a actualizar</param>
+            <param name="input">Datos del profesor a actualizar (todos los campos son opcionales)</param>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.AssociatedController.UpdateStudent(System.Int32,GestionBiblioteca.Aplication.DTO.UpdateStudentInput,GestionBiblioteca.Aplication.Services.UpdateStudentService)">
+            <summary>
+            Actualiza los datos de un estudiante
+            </summary>
+            <param name="dni">DNI del estudiante a actualizar</param>
+            <param name="input">Datos del estudiante a actualizar (todos los campos son opcionales)</param>
+        </member>
         <member name="T:GestionBiblioteca.Presentation.Controllers.LibraryController">
             <summary>
             Controlador para gestionar libros en la biblioteca
             </summary>
         </member>
-        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.ObtenerPorId(System.Int32,GestionBiblioteca.Aplication.Services.SearchBookService)">
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.SearchForId(System.Int32,GestionBiblioteca.Aplication.Services.SearchBookService)">
             <summary>
             Busca un libro por su ID
             </summary>
             <param name="id">ID del libro a buscar</param>
             <returns>Datos del libro encontrado</returns>
         </member>
-        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.CrearCuenta(GestionBiblioteca.Aplication.DTO.CreateBookInput,GestionBiblioteca.Aplication.Services.CreateBookService)">
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.CreateBook(GestionBiblioteca.Aplication.DTO.CreateBookInput,GestionBiblioteca.Aplication.Services.CreateBookService)">
             <summary>
-            Crea un nuevo libro en el sistema
+            Crea un nuevo libro en el sistema, la ID es un contador que inicia en 0 y se asigna uno automáticamente 
             </summary>
             <param name="input">Datos del libro a crear (título, autor, editorial, año, edición)</param>
             <returns>Mensaje de confirmación</returns>
         </member>
-        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.Delete(System.Int32,GestionBiblioteca.Aplication.Services.DeleteBookService)">
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.DeleteBook(System.Int32,GestionBiblioteca.Aplication.Services.DeleteBookService)">
             <summary>
             Elimina un libro del sistema
             </summary>
             <param name="id">ID del libro a eliminar</param>
+        </member>
+        <member name="M:GestionBiblioteca.Presentation.Controllers.LibraryController.UpdateBook(System.Int32,GestionBiblioteca.Aplication.DTO.UpdateBookInput,GestionBiblioteca.Aplication.Services.UpdateBookService)">
+            <summary>
+            Actualiza los datos de un libro
+            </summary>
+            <param name="id">ID del libro a actualizar</param>
+            <param name="input">Datos del libro a actualizar (todos los campos son opcionales)</param>
         </member>
         <member name="T:GestionBiblioteca.Presentation.Controllers.LoanController">
             <summary>
@@ -90,21 +111,15 @@
             <summary>
             Realiza un préstamo de libro a un profesor
             </summary>
-            <param name="input">DNI del profesor y ID del libro a prestar</param>
+            <param name="input">DNI del profesor y el ID del libro a prestar</param>
             <returns>ID del préstamo creado</returns>
         </member>
         <member name="M:GestionBiblioteca.Presentation.Controllers.LoanController.LendBookToStudent(GestionBiblioteca.Aplication.DTO.CreateLoanInput,GestionBiblioteca.Aplication.Services.LendBookToStudentService)">
             <summary>
             Realiza un préstamo de libro a un estudiante
             </summary>
-            <param name="input">DNI del estudiante y ID del libro a prestar</param>
+            <param name="input">DNI del estudiante y el ID del libro a prestar</param>
             <returns>ID del préstamo creado</returns>
-        </member>
-        <member name="M:GestionBiblioteca.Presentation.Controllers.LoanController.Patch(System.String,GestionBiblioteca.Aplication.Services.ReturnBookService)">
-            <summary>
-            Registra la devolución de un libro
-            </summary>
-            <param name="id">ID del préstamo a devolver</param>
         </member>
         <member name="T:Program">
             <summary>

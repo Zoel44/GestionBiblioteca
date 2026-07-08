@@ -7,7 +7,6 @@ namespace GestionBiblioteca.Domain.Entities
         public string Editorial { get; private set; }
         public int Year { get; private set; }
         public int Edition { get; private set; }
-        public List<Loan> Loans { get; private set; }
         public int BookID { get; private set; }
         public bool IsAvailable { get; private set; }
 
@@ -19,7 +18,6 @@ namespace GestionBiblioteca.Domain.Entities
             Editorial = p_editorial;
             Year = p_year;
             Edition = p_edition;
-            Loans = p_loan;
             BookID = p_id;
             IsAvailable = true;
         }
@@ -30,22 +28,12 @@ namespace GestionBiblioteca.Domain.Entities
             setEditorial(p_editorial);
             setYear(p_year);
             setEdition(p_edition);
-            Loans = new List<Loan>();
             setBookID(p_id);
             IsAvailable = true;
         }
         public bool AvailableStatus(bool status)
         {
             return IsAvailable = status;
-        }
-        public Loan? lastLoan()
-        {   
-            if(Loans.Count > 0)
-            {
-                return Loans[Loans.Count - 1];
-            }
-            
-            return null;
         }
 
         public void setTitle(string p_title)

@@ -22,9 +22,7 @@ namespace GestionBiblioteca.Aplication.Services
             {
                 Dni = associated.Dni,
                 Name = associated.Name,
-                Subject = associated.Subject,
-                Loans = associated.Loans,
-                QuantityBooksLending = associated.QuantityBooksLending
+                Subject = associated.Subject
                 
             };
         }

@@ -6,7 +6,7 @@ namespace GestionBiblioteca.Aplication.Services
 {
     public class ReturnBookService
     {
-        IRepositoryLoans repo;
+       /* IRepositoryLoans repo;
         public ReturnBookService(IRepositoryLoans p_repo)
         {
            repo = p_repo; 
@@ -20,11 +20,9 @@ namespace GestionBiblioteca.Aplication.Services
             }
             else
             {
-                repo.deleteLoan(p_ID);
-                loan.registerDateOfReturn(DateTime.Now);
-                repo.addLoan(loan);
+                repo.returnLoan(p_ID);
             }
 
-        }
+        }*/
     }
 }

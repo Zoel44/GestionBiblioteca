@@ -4,7 +4,6 @@ namespace GestionBiblioteca.Domain.Entities
     {
         public int Dni { get; private set; }
         public string Name { get; private set; }
-        public List<Loan> Loans { get; private set; }
         public int QuantityBooksLending { get; private set; }
         public string Subject { get; private set; }
 
@@ -19,8 +18,6 @@ namespace GestionBiblioteca.Domain.Entities
             setDNI(p_dni);
             setName(p_name);
             setSubject(p_subject);
-            Loans = new List<Loan>();
-            QuantityBooksLending = 0;
         }
 
         public Professor(int p_dni, string p_name, List<Loan> p_aLoan, string p_subject, int p_days)
@@ -28,8 +25,6 @@ namespace GestionBiblioteca.Domain.Entities
             // Constructor con historial de préstamos para crear casos de prueba a mano
             Dni = p_dni;
             Name = p_name;
-            Loans = p_aLoan;
-            QuantityBooksLending = p_days;
             Subject = p_subject;
         }
 

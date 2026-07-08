@@ -25,7 +25,6 @@ namespace GestionBiblioteca.Aplication.Services
                 Editorial = book.Editorial,
                 Year = book.Year,
                 Edition = book.Edition,
-                Loans = book.Loans,
                 BookID = book.BookID,
                 IsAvailable = book.IsAvailable
         

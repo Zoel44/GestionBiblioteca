@@ -12,7 +12,7 @@ namespace GestionBiblioteca.Aplication.Services
         {
             repository = p_repo;
         }
-        public void ejecutar(CreateBookInput input)
+        public int ejecutar(CreateBookInput input)
         {
             Book newBook = new Book("a", "a", "a", 1, 1, 1);
             newBook.setTitle(input.Title);
@@ -24,6 +24,7 @@ namespace GestionBiblioteca.Aplication.Services
 
             repository.addBook(newBook);
             ID ++;
+            return ID-1;
         }
     }
 }

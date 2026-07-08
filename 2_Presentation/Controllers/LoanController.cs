@@ -18,47 +18,62 @@ namespace GestionBiblioteca.Presentation.Controllers
         /// </summary>
         /// <param name="p_id">ID del préstamo a buscar</param>
         /// <returns>Datos del préstamo encontrado</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{p_id}")]
         [Produces("application/json")]
-        public LoanDTO? ObtainForId(string p_id, SearchLoanService service)
+        public ActionResult<LoanDTO> ObtainForId(string p_id, SearchLoanService service)
         {
-            return service.ejecutar(p_id);
+            LoanDTO? loan = service.ejecutar(p_id);
+
+            if (loan == null)
+            {
+                return NotFound(new { mensaje = "Préstamo no encontrado" });
+            }
+
+            return Ok(loan);
         }
 
         /// <summary>
         /// Realiza un préstamo de libro a un profesor
         /// </summary>
-        /// <param name="input">DNI del profesor y ID del libro a prestar</param>
+        /// <param name="input">DNI del profesor y el ID del libro a prestar</param>
         /// <returns>ID del préstamo creado</returns>
         [HttpPost("lend-professor")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public int LendBookToProfessor([FromBody] CreateLoanInput input, [FromServices] LendBookToProfessorService lendBookService)
+        public string LendBookToProfessor([FromBody] CreateLoanInput input, [FromServices] LendBookToProfessorService lendBookService)
         {
-            return lendBookService.ejecutar(input.Dni, input.BookId);
+            return  "El ID del prestamo es: " + lendBookService.ejecutar(input.Dni, input.BookId);
         }
 
         /// <summary>
         /// Realiza un préstamo de libro a un estudiante
         /// </summary>
-        /// <param name="input">DNI del estudiante y ID del libro a prestar</param>
+        /// <param name="input">DNI del estudiante y el ID del libro a prestar</param>
         /// <returns>ID del préstamo creado</returns>
         [HttpPost("lend-student")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public int LendBookToStudent([FromBody] CreateLoanInput input, [FromServices] LendBookToStudentService lendBookService)
+        public string LendBookToStudent([FromBody] CreateLoanInput input, [FromServices] LendBookToStudentService lendBookService)
         {
-            return lendBookService.ejecutar(input.Dni, input.BookId);
+            return "El ID del prestamo es: " + lendBookService.ejecutar(input.Dni, input.BookId);
         }
 
         /// <summary>
         /// Registra la devolución de un libro
         /// </summary>
         /// <param name="id">ID del préstamo a devolver</param>
-        [HttpPatch("{id}/devolver")]
-        public void Patch(string id, ReturnBookService returnBookService)
+       /* [HttpPatch("{id}/devolver")]
+        public ActionResult<string> ReturnBook(string id, ReturnBookService returnBookService)
         {
-            returnBookService.ejecutar(id);
-        }
+            try
+            {
+                returnBookService.ejecutar(id);
+                return Ok(new { mensaje = "Libro devuelto exitosamente", prestamoId = id });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }*/
     }
 }

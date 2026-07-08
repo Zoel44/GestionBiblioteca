@@ -11,6 +11,9 @@ namespace GestionBiblioteca.Aplication.DTO
         [Description("Fecha en que se retiró el libro")]
         public DateTime RetirementDate { get; set; }
 
+        [Description("Fecha en que se devolvió o se debe devolver el libro")]
+        public DateTime? ReturnDate { get; set; }
+
         [Description("Información del libro prestado")]
         public Book ABook { get; set; }
 

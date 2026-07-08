@@ -20,9 +20,6 @@ namespace GestionBiblioteca.Aplication.DTO
         [Description("Número de edición")]
         public int? Edition { get; set; }
 
-        [Description("Historial de todos los préstamos de este libro")]
-        public List<Loan> Loans { get; set; }
-
         [Description("ID único del libro en el sistema")]
         public int? BookID { get; set; }
 

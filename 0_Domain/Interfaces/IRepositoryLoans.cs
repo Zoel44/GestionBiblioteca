@@ -9,6 +9,6 @@ namespace GestionBiblioteca.Domain.Interfaces
         Loan? searchLoanForID(string id);
 
         void deleteLoan(string id);
-        void returnLoan(string id);
+       // void returnLoan(string id);
     }
 }

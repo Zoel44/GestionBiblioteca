@@ -1,6 +1,7 @@
 using GestionBiblioteca.Domain.Entities;
 using GestionBiblioteca.Domain.Interfaces;
 using GestionBiblioteca.Aplication.DTO;
+using System.Reflection;
 
 namespace GestionBiblioteca.Aplication.Services
 {
@@ -15,7 +16,7 @@ namespace GestionBiblioteca.Aplication.Services
             boo_repo = p_repo2;
             loa_repo = p_repo3;
         }
-        public int ejecutar(int p_dni, int p_id)
+        public string ejecutar(int p_dni, int p_id)
         {
             Professor? associated = asso_repo.searchProfessorForDNI(p_dni);
             Book? book = boo_repo.searchBookForID( p_id);
@@ -26,12 +27,10 @@ namespace GestionBiblioteca.Aplication.Services
             }
             else
             {
-
-            string newID = $"{DateTime.Now.ToString("yyyyMMddhhmmss")+p_dni.ToString()}";
-            Loan newLoan = new Loan(DateTime.Now, newID, associated, book);
+            Loan newLoan = new Loan( associated, book); //aquí tal vez debería / podría usar un DTO
             loa_repo.addLoan(newLoan);
             
-            return int.Parse(newID); 
+            return newLoan.Id; 
             }
         }
     }

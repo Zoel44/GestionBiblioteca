@@ -25,11 +25,14 @@ builder.Services.AddScoped<DeleteProfessorService>();
 builder.Services.AddScoped<DeleteStudentService>();
 builder.Services.AddScoped<SearchProfessorService>();
 builder.Services.AddScoped<SearchStudentService>();
+builder.Services.AddScoped<UpdateProfessorService>();
+builder.Services.AddScoped<UpdateStudentService>();
 
 // Book Services
 builder.Services.AddScoped<CreateBookService>();
 builder.Services.AddScoped<DeleteBookService>();
 builder.Services.AddScoped<SearchBookService>();
+builder.Services.AddScoped<UpdateBookService>();
 
 // Loan Services
 builder.Services.AddScoped<LendBookToProfessorService>();

@@ -11,21 +11,25 @@ namespace GestionBiblioteca.Aplication.Services
         {
             repository = p_repo;
         }
-        public LoanDTO? ejecutar(string p_dni)
+        public LoanDTO? ejecutar(string p_id)
         {
-            Loan? loan = repository.searchLoanForID(p_dni);
+            Loan? loan = repository.searchLoanForID(p_id);
 
-            if(loan == null)
-                return null;
-
-            return new LoanDTO()
+            if(loan != null)
             {
-                Id = loan.Id,
-                RetirementDate = loan.RetirementDate,
-                ReturnDate = loan.ReturnDate,
-                ABook = loan.ABook,
-                AnAssociated = loan.AnAssociated,
-            };
+                LoanDTO a_loan = new LoanDTO();
+                 a_loan.Id = loan.Id;
+                 a_loan.RetirementDate = loan.RetirementDate;
+                 //a_loan.ReturnDate = loan.ReturnDate;
+                 a_loan.ABook = loan.ABook;
+                 a_loan.AnAssociated = loan.AnAssociated;
+                 return a_loan;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 }

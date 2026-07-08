@@ -1,5 +1,6 @@
 using GestionBiblioteca.Domain.Interfaces;
 using GestionBiblioteca.Domain.Entities;
+using GestionBiblioteca.Aplication.Services;
 
 namespace GestionBiblioteca.Persistence.Repositores
 {
@@ -14,14 +15,14 @@ namespace GestionBiblioteca.Persistence.Repositores
         {
             foreach(Loan loan in LoanList)
             {
-                if(loan.Id.Equals(p_id))
+                if(loan.Id == p_id)
                 {
                     return loan;
                 }
             }
             return null;
         }
-        public void returnLoan(string p_id)
+       /* public void returnLoan(string p_id)
         {
              for (int i = 0; i < LoanList.Count; i++)
             {
@@ -31,7 +32,7 @@ namespace GestionBiblioteca.Persistence.Repositores
                     break;
                 }
             }
-        }
+        }*/
         public void deleteLoan(string p_id)
         {
             for (int i = 0; i < LoanList.Count; i++)

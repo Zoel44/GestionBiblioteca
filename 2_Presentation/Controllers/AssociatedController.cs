@@ -43,7 +43,7 @@ namespace GestionBiblioteca.Presentation.Controllers
         [HttpPost("create-professor")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public int CreateProfessor([FromBody] CreateProfessorInput input, [FromServices] CreateProfessorService crearCuentaService)
+        public string CreateProfessor([FromBody] CreateProfessorInput input, [FromServices] CreateProfessorService crearCuentaService)
         {
             return crearCuentaService.ejecutar(input);
         }
@@ -56,7 +56,7 @@ namespace GestionBiblioteca.Presentation.Controllers
         [HttpPost("create-student")]
         [Consumes("application/json")]
         [Produces("application/json")]
-        public int CreateStudent([FromBody] CreateStudentInput input, [FromServices] CreateStudentService crearCuentaService)
+        public string CreateStudent([FromBody] CreateStudentInput input, [FromServices] CreateStudentService crearCuentaService)
         {
             return crearCuentaService.ejecutar(input);
         }
@@ -79,6 +79,48 @@ namespace GestionBiblioteca.Presentation.Controllers
         public void DeleteStudent(int id, DeleteStudentService servicio)
         {
             servicio.ejecutar(id);
+        }
+
+        /// <summary>
+        /// Actualiza los datos de un profesor
+        /// </summary>
+        /// <param name="dni">DNI del profesor a actualizar</param>
+        /// <param name="input">Datos del profesor a actualizar (todos los campos son opcionales)</param>
+        [HttpPut("{dni:int}/update-professor")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public ActionResult<string> UpdateProfessor(int dni, [FromBody] UpdateProfessorInput input, [FromServices] UpdateProfessorService service)
+        {
+            try
+            {
+                service.ejecutar(dni, input);
+                return Ok(new { mensaje = "Profesor actualizado exitosamente", dni = dni });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Actualiza los datos de un estudiante
+        /// </summary>
+        /// <param name="dni">DNI del estudiante a actualizar</param>
+        /// <param name="input">Datos del estudiante a actualizar (todos los campos son opcionales)</param>
+        [HttpPut("{dni:int}/update-student")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        public ActionResult<string> UpdateStudent(int dni, [FromBody] UpdateStudentInput input, [FromServices] UpdateStudentService service)
+        {
+            try
+            {
+                service.ejecutar(dni, input);
+                return Ok(new { mensaje = "Estudiante actualizado exitosamente", dni = dni });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
     }
 }

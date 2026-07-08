@@ -14,9 +14,6 @@ namespace GestionBiblioteca.Aplication.DTO
         [Description("Carrera/Grado que está cursando")]
         public string? Degree { get; set; }
 
-        [Description("Historial de préstamos del estudiante")]
-        public List<Loan>? Loans { get; set; }
-
         [Description("Cantidad de libros que tiene prestados actualmente")]
         public int? QuantityBooksLending { get; set; }
     }
